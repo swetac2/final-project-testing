@@ -32,11 +32,11 @@ jobs:
         ECR_REPOSITORY: webapp
         IMAGE_TAG: v1.1
       run: |
-        cd cats/
+        cd webapp/
         ls -ltra
         # Build docker image
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        # Unit testcat1
+        # Unit test
         docker run -d -p 8080:80 --name cats $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker ps
         echo "Pause for 10 seconds to let container start"
