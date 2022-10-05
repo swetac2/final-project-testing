@@ -29,10 +29,10 @@ jobs:
     - name: Build, test, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: dogv2
-        IMAGE_TAG: dogs2.1
+        ECR_REPOSITORY: mySQL
+        IMAGE_TAG: v1.2
       run: |
-        cd dogs/
+        cd mySQL/
         ls -ltra
         # build docker image
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
