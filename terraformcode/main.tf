@@ -66,7 +66,7 @@ resource "aws_security_group" "my_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-
+  
   ingress {
     description = "Http from everywhere"
     from_port   = 8080
@@ -78,6 +78,20 @@ resource "aws_security_group" "my_sg" {
     description = "Http from everywhere"
     from_port   = 8081
     to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "Http from everywhere"
+    from_port   = 8082
+    to_port     = 8082
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "Http from everywhere"
+    from_port   = 8083
+    to_port     = 8083
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -99,10 +113,10 @@ resource "aws_eip" "my_eip" {
   vpc      = true
 }
 
-resource "aws_ecr_repository" "cat" {
-  name                 = "catv2"
+resource "aws_ecr_repository" "webapp" {
+  name                 = "webapp"
 } 
 
-resource "aws_ecr_repository" "dog" {
-  name                 = "dogv2"
+resource "aws_ecr_repository" "mysql" {
+  name                 = "mysql"
 }
