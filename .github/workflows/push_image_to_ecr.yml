@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag app
+      
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile_mysql --tag mysql
+      
+    - uses: actions/checkout@v3
+    - name: AWS configure
+      run: aws configure set aws_access_key_id ${{ secrets.aws_access_key_id }} && aws configure set aws_secret_access_key ${{ secrets.aws_secret_access_key }} && aws configure set aws_session_token ${{ secrets.aws_session_token }} && export AWS_DEFAULT_REGION=us-east-1
+           
+    - uses: actions/checkout@v3
+    - name: Login to AWS
+      run: docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 772859080303.dkr.ecr.us-east-1.amazonaws.com
+      
+    - name: Pushing a docker image_app
+      run: docker tag app 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:app && docker push 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:app
+      
+    - name: Pushing a docker image
+      run: docker tag mysql 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:mysql && docker push 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:mysql
