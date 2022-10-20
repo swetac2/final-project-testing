@@ -24,10 +24,10 @@ jobs:
            
     - uses: actions/checkout@v3
     - name: Login to AWS
-      run: docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 772859080303.dkr.ecr.us-east-1.amazonaws.com
+      run: docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 467336339185.dkr.ecr.us-east-1.amazonaws.com
       
     - name: Pushing a docker image_app
-      run: docker tag app 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:app && docker push 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:app
+      run: docker tag app 467336339185.dkr.ecr.us-east-1.amazonaws.com/mysql && docker push 467336339185.dkr.ecr.us-east-1.amazonaws.com/mysql
       
     - name: Pushing a docker image
       run: docker tag mysql 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:mysql && docker push 772859080303.dkr.ecr.us-east-1.amazonaws.com/clo835assignment1:mysql
