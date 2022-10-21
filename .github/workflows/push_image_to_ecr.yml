@@ -1,5 +1,5 @@
 name: Docker Image CI
-# run
+# run file
 on:
   push:
     branches: [ "master" ]
