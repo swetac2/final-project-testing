@@ -28,7 +28,7 @@ jobs:
     - name: Building the web app and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: webapp
+        ECR_REPOSITORY: web_app
         IMAGE_TAG: v2.0
       run: |
         cd webapp/
@@ -41,7 +41,7 @@ jobs:
     - name: Building the sql and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: mysql
+        ECR_REPOSITORY: my_sql
         IMAGE_TAG: v1.0
       run: |
         cd mysql/
