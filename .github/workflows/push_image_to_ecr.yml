@@ -46,7 +46,7 @@ jobs:
       run: |
         cd mysql/
         ls -ltra
-        # Docker build1
+        # Docker build
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker ps
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
